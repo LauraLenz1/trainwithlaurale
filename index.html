@@ -204,8 +204,10 @@ tbody tr:last-child td{color:var(--rose);font-weight:600}
 .me-pill img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:50% 35%;display:block}
 .social-row{padding-bottom:1.4rem;margin-bottom:1.4rem;border-bottom:1px solid var(--hair)}
 .social{display:flex;flex-wrap:wrap;gap:.6rem}
-.social a{text-decoration:none;font-size:.82rem;font-weight:500;color:var(--navy);padding:.55rem 1.1rem;border:1px solid var(--hair);border-radius:999px;transition:background .3s,color .3s}
-.social a:hover{background:var(--navy);color:var(--bg)}
+.social{gap:.8rem}
+.social a{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:#1C304C;border:1px solid var(--hair);transition:box-shadow .35s ease,transform .35s ease}
+.social a img{width:24px;height:24px;object-fit:contain;display:block}
+.social a:hover,.social a:focus-visible{box-shadow:0 0 0 3px var(--bg),0 0 0 6px #E36F98,0 12px 30px -8px rgba(227,111,152,.7);transform:translateY(-2px);outline:none}
 
 .hello{display:inline-flex;align-items:center;gap:1rem;margin-top:2rem;padding:.5rem 1.4rem .5rem .5rem;border-radius:999px;background:color-mix(in srgb,var(--bg) 80%,transparent);border:1px solid var(--hair);text-decoration:none;color:var(--navy);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .3s,transform .3s}
 .hello:hover{transform:translateY(-2px);background:var(--bg)}
@@ -493,11 +495,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
     <footer>
       <div class="wrap social-row">
         <nav class="social" aria-label="Social Media">
-          <a href="https://www.instagram.com/train.with.laura_le/" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.facebook.com/train.with.laura.le" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://www.tiktok.com/@train.with.laura_le" target="_blank" rel="noopener">TikTok</a>
-          <a href="https://www.youtube.com/@train.with.laura_le" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://at.pinterest.com/trainwithlaurale/" target="_blank" rel="noopener">Pinterest</a>
+          <a href="https://www.instagram.com/train.with.laura_le/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><img src="bilder/logo-instagram.png" alt="" width="24" height="24"></a>
+          <a href="https://www.facebook.com/train.with.laura.le" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><img src="bilder/logo-facebook.png" alt="" width="24" height="24"></a>
+          <a href="https://www.tiktok.com/@train.with.laura_le" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><img src="bilder/logo-tiktok.png" alt="" width="24" height="24"></a>
+          <a href="https://www.youtube.com/@train.with.laura_le" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><img src="bilder/logo-youtube.png" alt="" width="24" height="24"></a>
+          <a href="https://at.pinterest.com/trainwithlaurale/" target="_blank" rel="noopener" aria-label="Pinterest" title="Pinterest"><img src="bilder/logo-pinterest.png" alt="" width="24" height="24"></a>
         </nav>
       </div>
       <div class="wrap">
