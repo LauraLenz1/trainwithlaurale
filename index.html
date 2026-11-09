@@ -236,6 +236,12 @@ tbody tr:last-child td{color:var(--rose);font-weight:600}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:#E36F98;box-shadow:0 0 0 3px rgba(227,111,152,.25)}
 .kl-check{display:flex;gap:.6rem;align-items:flex-start;font-size:.8rem;color:#5B6B82}
 .kl-check a{color:#E36F98}
+.kl-topics{border:0;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem .9rem}
+.kl-topics legend{font-size:.82rem;font-weight:600;color:#1C304C;margin-bottom:.6rem;padding:0}
+.kl-topics legend i{font-weight:400;font-style:normal;color:#5B6B82}
+.kl-topics label{display:flex;gap:.5rem;align-items:center;font-size:.88rem;color:#1C304C;cursor:pointer}
+.kl-topics input{accent-color:#E36F98;width:1.05rem;height:1.05rem;flex:none}
+@media (max-width:460px){.kl-topics{grid-template-columns:1fr}}
 .kl-btn{justify-self:start;font:inherit;font-weight:600;font-size:1rem;color:#FFFFFF;background:#1C304C;border:0;border-radius:999px;padding:.95rem 1.8rem;cursor:pointer;transition:background .3s,box-shadow .35s,transform .35s}
 .kl-btn:hover{background:#E36F98;box-shadow:0 12px 36px -10px rgba(227,111,152,.6);transform:translateY(-2px)}
 #kl-out{font-size:.9rem;font-weight:500;color:#B8496F;min-height:1.3em}
@@ -464,8 +470,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
           <p>Trag dich unverbindlich ein und bleib mit mir in Kontakt.</p>
         </div>
         <form id="kl-form" class="kl-form" novalidate>
-          <div class="f"><label for="kl-name">Vorname</label><input id="kl-name" name="vorname" type="text" autocomplete="given-name" required></div>
+          <div class="f"><label for="kl-name">Vor- und Nachname</label><input id="kl-name" name="name" type="text" autocomplete="name" required></div>
           <div class="f"><label for="kl-mail">E-Mail</label><input id="kl-mail" name="email" type="email" autocomplete="email" required></div>
+          <fieldset class="kl-topics"><legend>Was interessiert dich am meisten? <i>(optional)</i></legend>
+            <label><input type="checkbox" name="thema" value="Krafttraining zuhause"> Krafttraining zuhause</label>
+            <label><input type="checkbox" name="thema" value="Krafttraining im Gym"> Krafttraining im Gym</label>
+            <label><input type="checkbox" name="thema" value="Ernährungswissen & Rezepte"> Ernährungswissen &amp; Rezepte</label>
+            <label><input type="checkbox" name="thema" value="Motivation & Dranbleiben"> Motivation &amp; Dranbleiben</label>
+          </fieldset>
           <label class="kl-check" for="kl-ok"><input id="kl-ok" type="checkbox" required> <span>Ja, ich möchte per E-Mail Neuigkeiten von Laura bekommen. Abmelden geht jederzeit. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
           <button type="submit" class="kl-btn">In Kontakt bleiben</button>
           <span id="kl-out" aria-live="polite"></span>
@@ -533,7 +545,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
 
   var klForm=document.getElementById('kl-form'),klOut=document.getElementById('kl-out');
   klForm.addEventListener('submit',function(e){e.preventDefault();
-    klOut.textContent=klForm.checkValidity()?'Danke! Im echten Betrieb bekommst du jetzt eine Bestätigungs-Mail.':'Bitte Vorname, E-Mail und das Häkchen ausfüllen.';});
+    klOut.textContent=klForm.checkValidity()?'Danke! Im echten Betrieb bekommst du jetzt eine Bestätigungs-Mail.':'Bitte Name, E-Mail und das Häkchen ausfüllen.';});
   var f=document.getElementById('nl'),m=document.getElementById('nl-msg');
   f.addEventListener('submit',function(e){e.preventDefault();
     m.textContent=f.checkValidity()?'Danke! Im echten Betrieb kommt jetzt eine Bestätigungs-Mail.':'Bitte E-Mail eintragen und das Häkchen setzen.';});
