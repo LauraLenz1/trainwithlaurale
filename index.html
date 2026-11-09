@@ -545,10 +545,10 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
 
   var klForm=document.getElementById('kl-form'),klOut=document.getElementById('kl-out');
   klForm.addEventListener('submit',function(e){e.preventDefault();
-    klOut.textContent=klForm.checkValidity()?'Danke! Im echten Betrieb bekommst du jetzt eine Bestätigungs-Mail.':'Bitte Name, E-Mail und das Häkchen ausfüllen.';});
+    klOut.textContent=klForm.checkValidity()?'Danke! Die Anmeldung wird gerade eingerichtet – bitte schau in ein paar Tagen wieder vorbei.':'Bitte Name, E-Mail und das Häkchen ausfüllen.';});
   var f=document.getElementById('nl'),m=document.getElementById('nl-msg');
   f.addEventListener('submit',function(e){e.preventDefault();
-    m.textContent=f.checkValidity()?'Danke! Im echten Betrieb kommt jetzt eine Bestätigungs-Mail.':'Bitte E-Mail eintragen und das Häkchen setzen.';});
+    m.textContent=f.checkValidity()?'Danke! Die Anmeldung wird gerade eingerichtet – bitte schau in ein paar Tagen wieder vorbei.':'Bitte E-Mail eintragen und das Häkchen setzen.';});
 
   /* ---------- 3D-Bühne ---------- */
   if(typeof THREE==='undefined'){document.documentElement.classList.add('no3d');return;}
