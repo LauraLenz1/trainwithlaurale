@@ -550,6 +550,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
   var BREVO='https://b78da8fa.sibforms.com/serve/MUIFAGkDZH5PMUyeU6i16aoh-ityCFdy_BMw-JteC3sLrRKqEnyO9D-NzbFWJctaUM-26hQrI9Np7KD-zfZJhWaMQpEKfhsaS3sbABhpabN8sLg3QUS2nJIgAmrMajCQ6r5X7aTS6JhE5peo2wQDumvzISayxTMAei0sgoNhlPgmJUP0TL9YECYo3ptH-v9ZEYuD6PkjfhQXhxOXbg==';
+  var BREVO_ERSTER_SCHRITT='https://b78da8fa.sibforms.com/serve/MUIFAMwzEIwwOkiRcAiKAb6_5mVNO7NVGneVxVuvv-ZTsphkVqtZMqksi0ccSXnJ3N8gP8IM2rzjoqsELrAQChmKlTYLPQi4Lknr_iRb6ASa-W1JKue54XmBEBKBSFk73mGK9pypp4gkULU7QtZ8LRnQPk8ZK1uXHo9h-mR3_I8TkHv0Y5VhKGgV53iShG3-oDRr3S0N5mZsncDWlw==';
   var OKMSG='Fast geschafft! Bitte bestätige deine Anmeldung in der E-Mail, die wir dir gerade geschickt haben.';
   function tel(v){var d=(v||'').replace(/[^0-9+]/g,'');if(!d)return null;var cc='+43';
     if(d.indexOf('+')===0||d.indexOf('00')===0){d=d.replace(/^\+|^00/,'');if(d.indexOf('43')===0){d=d.slice(2);}else if(d.indexOf('49')===0){cc='+49';d=d.slice(2);}else if(d.indexOf('41')===0){cc='+41';d=d.slice(2);}}
@@ -560,12 +561,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
     fd.append('OPT_IN','1');fd.append('email_address_check',o.hp||'');fd.append('locale','de');fd.append('html_type','simple');
     if(o.hp){out.textContent=OKMSG;return;}
     btn.disabled=true;out.textContent='Einen Moment …';
-    fetch(BREVO,{method:'POST',mode:'no-cors',body:fd}).then(function(){out.textContent=OKMSG;}).catch(function(){out.textContent='Das hat leider nicht geklappt. Bitte versuche es gleich noch einmal.';btn.disabled=false;});}
+    fetch(o.url||BREVO,{method:'POST',mode:'no-cors',body:fd}).then(function(){out.textContent=OKMSG;}).catch(function(){out.textContent='Das hat leider nicht geklappt. Bitte versuche es gleich noch einmal.';btn.disabled=false;});}
   var klForm=document.getElementById('kl-form'),klOut=document.getElementById('kl-out');
   klForm.addEventListener('submit',function(e){e.preventDefault();
     if(!klForm.checkValidity()){klOut.textContent='Bitte Vorname, Nachname, E-Mail und das Häkchen ausfüllen.';return;}
     var t=document.getElementById('kl-tel').value.trim(),tt=tel(t);if(t&&!tt){klOut.textContent='Bitte die Telefonnummer prüfen (oder leer lassen).';return;}
-    send({v:klForm.VORNAME.value.trim(),n:klForm.NACHNAME.value.trim(),e:klForm.EMAIL.value.trim(),t:tt,hp:klForm.email_address_check.value,
+    send({url:BREVO_ERSTER_SCHRITT,v:klForm.VORNAME.value.trim(),n:klForm.NACHNAME.value.trim(),e:klForm.EMAIL.value.trim(),t:tt,hp:klForm.email_address_check.value,
       th:[].slice.call(klForm.querySelectorAll('input[name=thema]:checked')).map(function(x){return x.value;})},klOut,klForm.querySelector('button'));});
   var f=document.getElementById('nl'),m=document.getElementById('nl-msg');
   f.addEventListener('submit',function(e){e.preventDefault();
