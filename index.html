@@ -292,6 +292,8 @@ a.price.hi{color:var(--bg)}
 .nl h2 span{color:#E36F98}
 .nl p{margin-top:var(--s-lead);font-weight:300;color:#3A4B63;max-width:34ch;font-size:1.05rem}
 form{display:grid;gap:.9rem}
+.kl-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}@media (max-width:520px){.kl-two{grid-template-columns:1fr}}
+.nl-two{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:.9rem}.nl-two input{min-width:0;background:transparent;border:0;border-bottom:1px solid rgba(28,48,76,.35);color:#1C304C;font:inherit;font-size:1.1rem;padding:.4rem 0 .6rem;outline:none}.nl-two input::placeholder{color:rgba(28,48,76,.5)}
 .field{display:flex;gap:.5rem;border-bottom:1px solid rgba(28,48,76,.35);padding-bottom:.6rem}
 .field input{flex:1;min-width:0;background:transparent;border:0;color:#1C304C;font:inherit;font-size:1.1rem;padding:.4rem 0;outline:none}
 .field input::placeholder{color:rgba(28,48,76,.5)}
@@ -470,15 +472,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
           <p>Trag dich unverbindlich ein und bleib mit mir in Kontakt.</p>
         </div>
         <form id="kl-form" class="kl-form" novalidate>
-          <div class="f"><label for="kl-name">Vor- und Nachname</label><input id="kl-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="f"><label for="kl-mail">E-Mail</label><input id="kl-mail" name="email" type="email" autocomplete="email" required></div>
+          <div class="kl-two"><div class="f"><label for="kl-vor">Vorname</label><input id="kl-vor" name="VORNAME" type="text" autocomplete="given-name" required></div><div class="f"><label for="kl-nach">Nachname</label><input id="kl-nach" name="NACHNAME" type="text" autocomplete="family-name" required></div></div>
+          <div class="f"><label for="kl-mail">E-Mail</label><input id="kl-mail" name="EMAIL" type="email" autocomplete="email" required></div><div class="f"><label for="kl-tel">Telefonnummer <i>(freiwillig)</i></label><input id="kl-tel" name="SMS" type="tel" autocomplete="tel" placeholder="z. B. 0664 1234567"></div>
           <fieldset class="kl-topics"><legend>Was interessiert dich am meisten? <i>(optional)</i></legend>
             <label><input type="checkbox" name="thema" value="Krafttraining zuhause"> Krafttraining zuhause</label>
             <label><input type="checkbox" name="thema" value="Krafttraining im Gym"> Krafttraining im Gym</label>
+            <label><input type="checkbox" name="thema" value="Abnehmen & Fettabbau"> Abnehmen &amp; Fettabbau</label>
             <label><input type="checkbox" name="thema" value="Ernährungswissen & Rezepte"> Ernährungswissen &amp; Rezepte</label>
+            <label><input type="checkbox" name="thema" value="Fit ab 40 & Wechseljahre"> Fit ab 40 &amp; Wechseljahre</label>
             <label><input type="checkbox" name="thema" value="Motivation & Dranbleiben"> Motivation &amp; Dranbleiben</label>
           </fieldset>
           <label class="kl-check" for="kl-ok"><input id="kl-ok" type="checkbox" required> <span>Ja, ich möchte per E-Mail Neuigkeiten von Laura bekommen. Abmelden geht jederzeit. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</span></label>
+          <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
           <button type="submit" class="kl-btn">In Kontakt bleiben</button>
           <span id="kl-out" aria-live="polite"></span>
         </form>
@@ -493,6 +498,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
           <p>Training und Ernährung, ehrlich und alltagstauglich. Direkt in dein Postfach.</p>
         </div>
         <form id="nl" novalidate>
+          <div class="nl-two"><label for="nl-vor" class="sr" style="position:absolute;left:-9999px">Vorname</label><input id="nl-vor" type="text" autocomplete="given-name" placeholder="Vorname" required><label for="nl-nach" class="sr" style="position:absolute;left:-9999px">Nachname</label><input id="nl-nach" type="text" autocomplete="family-name" placeholder="Nachname" required></div>
           <div class="field">
             <label for="nl-mail" class="sr" style="position:absolute;left:-9999px">E-Mail</label>
             <input id="nl-mail" type="email" autocomplete="email" placeholder="Deine E-Mail" required>
@@ -543,12 +549,28 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-be
   }
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
 
+  var BREVO='https://b78da8fa.sibforms.com/serve/MUIFAGkDZH5PMUyeU6i16aoh-ityCFdy_BMw-JteC3sLrRKqEnyO9D-NzbFWJctaUM-26hQrI9Np7KD-zfZJhWaMQpEKfhsaS3sbABhpabN8sLg3QUS2nJIgAmrMajCQ6r5X7aTS6JhE5peo2wQDumvzISayxTMAei0sgoNhlPgmJUP0TL9YECYo3ptH-v9ZEYuD6PkjfhQXhxOXbg==';
+  var OKMSG='Fast geschafft! Bitte bestätige deine Anmeldung in der E-Mail, die wir dir gerade geschickt haben.';
+  function tel(v){var d=(v||'').replace(/[^0-9+]/g,'');if(!d)return null;var cc='+43';
+    if(d.indexOf('+')===0||d.indexOf('00')===0){d=d.replace(/^\+|^00/,'');if(d.indexOf('43')===0){d=d.slice(2);}else if(d.indexOf('49')===0){cc='+49';d=d.slice(2);}else if(d.indexOf('41')===0){cc='+41';d=d.slice(2);}}
+    d=d.replace(/^0+/,'');return d.length>=6?{cc:cc,n:d}:null;}
+  function send(o,out,btn){var fd=new FormData();fd.append('VORNAME',o.v);fd.append('NACHNAME',o.n);fd.append('EMAIL',o.e);
+    if(o.t){fd.append('SMS__COUNTRY_CODE',o.t.cc);fd.append('SMS',o.t.n);}
+    (o.th||[]).forEach(function(x){fd.append('THEMEN[]',x);});
+    fd.append('OPT_IN','1');fd.append('email_address_check',o.hp||'');fd.append('locale','de');fd.append('html_type','simple');
+    if(o.hp){out.textContent=OKMSG;return;}
+    btn.disabled=true;out.textContent='Einen Moment …';
+    fetch(BREVO,{method:'POST',mode:'no-cors',body:fd}).then(function(){out.textContent=OKMSG;}).catch(function(){out.textContent='Das hat leider nicht geklappt. Bitte versuche es gleich noch einmal.';btn.disabled=false;});}
   var klForm=document.getElementById('kl-form'),klOut=document.getElementById('kl-out');
   klForm.addEventListener('submit',function(e){e.preventDefault();
-    klOut.textContent=klForm.checkValidity()?'Danke! Die Anmeldung wird gerade eingerichtet – bitte schau in ein paar Tagen wieder vorbei.':'Bitte Name, E-Mail und das Häkchen ausfüllen.';});
+    if(!klForm.checkValidity()){klOut.textContent='Bitte Vorname, Nachname, E-Mail und das Häkchen ausfüllen.';return;}
+    var t=document.getElementById('kl-tel').value.trim(),tt=tel(t);if(t&&!tt){klOut.textContent='Bitte die Telefonnummer prüfen (oder leer lassen).';return;}
+    send({v:klForm.VORNAME.value.trim(),n:klForm.NACHNAME.value.trim(),e:klForm.EMAIL.value.trim(),t:tt,hp:klForm.email_address_check.value,
+      th:[].slice.call(klForm.querySelectorAll('input[name=thema]:checked')).map(function(x){return x.value;})},klOut,klForm.querySelector('button'));});
   var f=document.getElementById('nl'),m=document.getElementById('nl-msg');
   f.addEventListener('submit',function(e){e.preventDefault();
-    m.textContent=f.checkValidity()?'Danke! Die Anmeldung wird gerade eingerichtet – bitte schau in ein paar Tagen wieder vorbei.':'Bitte E-Mail eintragen und das Häkchen setzen.';});
+    if(!f.checkValidity()){m.textContent='Bitte Vorname, Nachname, E-Mail eintragen und das Häkchen setzen.';return;}
+    send({v:document.getElementById('nl-vor').value.trim(),n:document.getElementById('nl-nach').value.trim(),e:document.getElementById('nl-mail').value.trim()},m,f.querySelector('button'));});
 
   /* ---------- 3D-Bühne ---------- */
   if(typeof THREE==='undefined'){document.documentElement.classList.add('no3d');return;}
